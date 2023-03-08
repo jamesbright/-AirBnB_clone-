@@ -1,2 +1,2 @@
-test_*.py
+./test_*.py
 file.json
