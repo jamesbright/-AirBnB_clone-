@@ -3,8 +3,10 @@
 This serves as the BaseModel, it contains the BaseModel class
 and its' functions
 """
+import json
 import uuid
 from datetime import datetime
+import models
 time_format = "%Y-%m-%dT%H:M:%S.%f"
 
 class BaseModel:
@@ -29,12 +31,14 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
+            models.storage.new(self)
 
 
     def save(self):
         """updates updated_at with the current datetime
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
 
     def to_dict(self):
@@ -56,4 +60,3 @@ class BaseModel:
         """
         return ("[{0}] ({1}) {2}".format(self.__class__.__name__,
                                         self.id, self.__dict__))
-
