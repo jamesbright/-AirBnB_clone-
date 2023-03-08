@@ -1,7 +1,6 @@
-
 #!/usr/bin/python3
 """
-Unit Test for BaseModel Class
+Unit Test for FileStorage Class
 """
 import unittest
 from datetime import datetime
