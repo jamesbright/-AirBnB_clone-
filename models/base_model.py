@@ -25,7 +25,7 @@ class BaseModel:
                 self.created_at = datetime.strptime(kwargs.get("created_at"),
                                                     time_format)
             if "updated_at" in kwargs:
-                self.updated_At = datetime.strptime(kwargs.get("updated_at"),
+                self.updated_at = datetime.strptime(kwargs.get("updated_at"),
                                                     time_format)
 
         else:
