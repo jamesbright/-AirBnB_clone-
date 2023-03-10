@@ -5,6 +5,8 @@ has methods that manipulate object saving and retrieval
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
+
 
 class FileStorage:
     """Serializes objects to a JSON file
@@ -14,7 +16,8 @@ class FileStorage:
     __objects = {}
 
     classes = {
-        "BaseModel": BaseModel
+        "BaseModel": BaseModel,
+        "User": User
         }
 
     def all(self):
