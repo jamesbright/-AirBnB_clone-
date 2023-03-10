@@ -3,6 +3,8 @@
 """Console implementation contains the entry point
     of the command interpreter"""
 import cmd
+import models
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
         prompt (hbnb): command to execute
 
     """
-    __class_list = ["BaseModel"]
+    # _class_list = ["BaseModel"]
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -90,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:  # checking if no classname is inputted
             for v in objects.values():
                 to_print.append(str(v))
-        elif line[0] in HBNBCommand.__class_list:  # check if name in classname
+        elif line[0] in models.classes.keys():  # check if name in classname
             for k, v in objects.items():
                 if line[0] in k:
                     to_print.append(str(v))
@@ -121,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:  # checking if no classname is inputted
             print("** class name missing **")
             return False
-        elif line[0] not in HBNBCommand.__class_list:
+        elif line[0] not in models.classes.keys():
             print("** class doesn\'t exist **")
             return False
         return True
