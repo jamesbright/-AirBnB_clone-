@@ -117,6 +117,49 @@ class HBNBCommand(cmd.Cmd):
         setattr(objects[key], line[2], line[3])
         models.storage.save()
 
+    def default(self, arg):
+        """This method is called on an input line when the command prefix is not recognized. 
+                If this method is not overridden, it prints an error message and returns.
+        Attributes:
+            arg (str): The inputted line string
+        """
+        line = arg.strip('()').split(".")  # Separating clssname and attr_name 
+        if len(line) < 2:
+            print('** missing attribute **')
+            return
+        objects = models.storage.all()
+        class_name = line[0].capitalize()  # ensuring classname is capitalize
+        cmd_name = line[1].lower()  # getting command name
+        split2 = cmd_name.strip(')').split('(')
+        cmd_name = split2[0]
+        if cmd_name == 'all':
+            HBNBCommand.do_all(self, class_name)
+        elif cmd_name == 'show':
+            if len(split2) < 2:
+                print('** no instance found **')
+            else:
+                HBNBCommand.do_show(self, class_name + ' ' + split2[1])
+        elif cmd_name == 'destroy':
+            if len(split2) < 2:
+                print('** no instance found **')
+            else:
+                HBNBCommand.do_destroy(self, class_name + ' ' + split2[1])
+        elif cmd_name == 'update':
+            split3 = split2[1].split(', ')
+            if len(split3) == 0:
+                print('** no instance found **')
+            elif len(split3) == 1 and type(split3[1]) == dict:
+                for k, v in split[1].items():
+                    HBNBCommand.do_update(self, class_name + ' ' + split3[0] +
+                                          ' ' + k + ' ' + v)
+            elif len(split3) == 1 and type(split3[1]) != dict:
+                print('** no instance found **')
+            elif len(split3) == 2:
+                print('** no instance found **')
+            else:
+                HBNBCommand.do_update(self, class_name + ' ' + split3[0] +
+                                      ' ' + split3[1] + ' ' + split3[2])
+
     @classmethod
     def verify_class(cls, line):
         """Function to verify inputted classname"""
@@ -128,7 +171,8 @@ class HBNBCommand(cmd.Cmd):
             return False
         return True
 
-    def verify_id(line):
+    @classmethod
+    def verify_id(cls, line):
         """Static method to verify the id.
         """
         if len(line) < 2:  # checks if input has id
@@ -141,7 +185,8 @@ class HBNBCommand(cmd.Cmd):
             return False
         return True
 
-    def verify_attribute(line):
+    @classmethod
+    def verify_attribute(cls, line):
         """Static method to verify the attribute in inputted line.
         """
         if len(line) < 3:  # checks if input has an attr name
