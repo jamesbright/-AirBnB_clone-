@@ -5,6 +5,12 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +20,6 @@ class HBNBCommand(cmd.Cmd):
         prompt (hbnb): command to execute
 
     """
-    # _class_list = ["BaseModel"]
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -118,12 +123,14 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()
 
     def default(self, arg):
-        """This method is called on an input line when the command prefix is not recognized. 
-                If this method is not overridden, it prints an error message and returns.
+        """This method is called on an input line when the
+                 command prefix is not recognized. If this method is not
+                 overridden, it prints an error message and returns.
+
         Attributes:
             arg (str): The inputted line string
         """
-        line = arg.strip('()').split(".")  # Separating clssname and attr_name 
+        line = arg.strip('()').split(".")  # Separating clssname and attr_name
         if len(line) < 2:
             print('** missing attribute **')
             return

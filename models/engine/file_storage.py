@@ -22,7 +22,12 @@ class FileStorage:
 
     classes = {
         "BaseModel": BaseModel,
-        "User": User
+        "User": User,
+        "State": State,
+        "Place": Place,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
         }
 
     def all(self):
