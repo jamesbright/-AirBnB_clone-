@@ -122,17 +122,6 @@ class HBNBCommand(cmd.Cmd):
         setattr(objects[key], line[2], line[3])
         models.storage.save()
 
-    def do_count(self, arg):
-        """
-        Method counts instances of a certain class
-        """
-        count_instance = 0
-        for instance_object in models.storage.all():
-            if (arg in instance_object):
-                count_instance += 1
-        print(count_instance)
-
-
     def default(self, arg):
         """This method is called on an input line when the
                  command prefix is not recognized. If this method is not
