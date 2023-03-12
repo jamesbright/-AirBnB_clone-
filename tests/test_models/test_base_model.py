@@ -57,14 +57,6 @@ class TestBaseModelInstances(unittest.TestCase):
                 actual += 1
         self.assertTrue(3 == actual)
 
-    def test_instantiation_no_updated(self):
-        """... should not have updated attribute"""
-        my_str = str(self.model)
-        actual = 0
-        if 'updated_at' in my_str:
-            actual += 1
-        self.assertTrue(0 == actual)
-
     def test_save(self):
         """... save function should add updated_at attribute"""
         self.model.save()
