@@ -35,7 +35,6 @@ class FileStorage:
         """
         return (FileStorage.__objects)
 
-
     def new(self, obj):
         """Sets __obj the obj with key
         <obj class name>.id
@@ -60,7 +59,7 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, mode="r",
-                    encoding="UTF-8") as src_file:
+                      encoding="UTF-8") as src_file:
                 for key, value in (json.load(src_file)).items():
                     value = eval(value["__class__"])(**value)
                     self.__objects[key] = value

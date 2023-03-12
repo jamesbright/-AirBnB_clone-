@@ -25,7 +25,6 @@ class TestFileStorageDocs(unittest.TestCase):
         print('..... For FileStorage Class .....')
         print('.................................\n')
 
-
     def test_checking_for_docstring_BaseModel(self):
         """checking for docstrings"""
         self.assertIsNotNone(FileStorage.__doc__)
@@ -35,10 +34,8 @@ class TestFileStorageDocs(unittest.TestCase):
         self.assertIsNotNone(FileStorage.reload.__doc__)
 
 
-
 class TestBmFsInstances(unittest.TestCase):
     """testing for class instances"""
-
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
@@ -90,7 +87,7 @@ class TestBmFsInstances(unittest.TestCase):
         actual = 1
         try:
             serialized = json.dumps(my_model_dict)
-        except:
+        except Exception:
             actual = 0
         self.assertTrue(1 == actual)
 
