@@ -5,10 +5,10 @@ and its' functions
 """
 import json
 import uuid
-from datetime import datetime
+import datetime
 import models
 
-time_format = "%Y-%m-%dT%H:M:%S.%f"
+time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class BaseModel:
@@ -24,22 +24,22 @@ class BaseModel:
         if kwargs:
             self.__dict__ = kwargs
             if "created_at" in kwargs:
-                self.created_at = datetime.strptime(kwargs.get("created_at"),
+                self.created_at = datetime.datetime.strptime(kwargs.get("created_at"),
                                                     time_format)
             if "updated_at" in kwargs:
-                self.updated_at = datetime.strptime(kwargs.get("updated_at"),
+                self.updated_at = datetime.datetime.strptime(kwargs.get("updated_at"),
                                                     time_format)
 
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
             models.storage.new(self)
 
     def save(self):
         """updates updated_at with the current datetime
         """
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
