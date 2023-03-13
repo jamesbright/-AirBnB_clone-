@@ -1,5 +1,7 @@
+<p align="center">
+  <img src="./airbnb_logo.png" alt="AirBnB logo">
+</p>
 <h1 align="center">AirBnb console</h1>
-<p align="center">An AirBnB clone.</p>
 
 ---
 
