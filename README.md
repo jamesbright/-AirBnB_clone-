@@ -256,5 +256,4 @@ $ python3 unittest -m tests/test_console.py
 ```
 
 ## Authors :black_nib:
-* **Oladunsi Oke** <[oladunsi](https://github.com/oladunsi)>
 * **James Ononiwu** <[jamesbright](https://github.com/jamesbright)>
